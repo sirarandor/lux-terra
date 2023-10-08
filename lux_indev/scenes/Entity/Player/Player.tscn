@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4kjo6ccfy5hs"]
+
+[ext_resource type="Script" path="res://src/entiy/Player.cs" id="1_j8yaw"]
+[ext_resource type="Texture2D" uid="uid://blf8r3uuxsgua" path="res://content/sprites/character.png" id="2_4g1wu"]
+[ext_resource type="Theme" uid="uid://bb441filmbuhg" path="res://content/misc/base_theme.tres" id="3_y3ijg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ran2d"]
+size = Vector2(32, 32)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yfapy"]
+properties/0/path = NodePath("Name:text")
+properties/0/spawn = true
+properties/0/sync = false
+properties/0/watch = false
+properties/1/path = NodePath("..:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_j8yaw")
+
+[node name="PlayerCharacter" type="CharacterBody2D" parent="."]
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter"]
+shape = SubResource("RectangleShape2D_ran2d")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCharacter"]
+texture = ExtResource("2_4g1wu")
+
+[node name="NameTag" type="Label" parent="PlayerCharacter"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = -39.0
+offset_right = 27.0
+offset_bottom = -16.0
+grow_horizontal = 2
+theme = ExtResource("3_y3ijg")
+text = "player"
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../PlayerCharacter")
+replication_config = SubResource("SceneReplicationConfig_yfapy")
