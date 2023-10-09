@@ -10,6 +10,14 @@ script = ExtResource("1_x825u")
 [node name="World" type="TileMap" parent="."]
 tile_set = ExtResource("2_s1ncw")
 format = 2
+layer_0/name = "bg"
+layer_1/name = "fg"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("3_5vo8j")
 
 [node name="Entities" type="Node2D" parent="World"]

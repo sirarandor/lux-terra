@@ -74,5 +74,29 @@ public partial class Main : Node
 		public static string ADDRESS = "localhost";
 		public static int 	 PORT    = 48256; 
 		public static string multiType = "default";
-	}
+
+		public static int CHUNKSIZE = 16;
+
+		public static Dictionary<string,Vector2I> enviromentReadableTiles = new Dictionary<string, Vector2I>{
+			{"stone", Vector2I(1,3)},
+			{"dirt",  Vector2I(1,8)},
+			{"metal", Vector2I(1,4)},
+			{"grass", Vector2I(3,8)}
+			};
+		public static Dictionary<int,Vector2I> enviromentChunktiles = new Dictionary<int, Vector2I>{
+			{1, Vector2I(1,3)},
+			{2,  Vector2I(1,8)},
+			{3, Vector2I(1,4)},
+			{4, Vector2I(3,8)}
+			};
+
+		//This should not work at all. Remove this later. Seriously. Bad.
+        private static Vector2I Vector2I(int v1, int v2)
+        {
+            Vector2I p = new Vector2I();
+			p.X = v1; 
+			p.Y = v2; 
+			return p;
+        }
+    }
 }

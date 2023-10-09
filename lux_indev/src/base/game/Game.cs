@@ -8,7 +8,7 @@ public partial class Game : Node2D
 	private ENetMultiplayerPeer multiUser;
 	public Node2D entityList;
 	
-	public World gameWorld; 
+	public World gameWorld;
 
 	private PackedScene playerScene;
 	// Called when the node enters the scene tree for the first time.
@@ -18,8 +18,12 @@ public partial class Game : Node2D
 
 
 		multiUser = new ENetMultiplayerPeer(); 
+		
+		
 		entityList = GetNode<Node2D>("World/Entities");
-			
+		gameWorld  = GetNode<World>("World");
+
+
 		Multiplayer.PeerConnected += (long id) => onUserConnected(id);
 
 		if (LuxData.multiType == "server") {

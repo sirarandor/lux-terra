@@ -1,5 +1,6 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ds1t3ch82tc2p"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://ds1t3ch82tc2p"]
 
+[ext_resource type="Script" path="res://src/base/game/World.cs" id="1_mlylm"]
 [ext_resource type="Texture2D" uid="uid://c1yy5uhctepdk" path="res://content/sprites/PixelsStuffs.png" id="1_r3lwo"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lkncs"]
@@ -168,7 +169,6 @@ texture = ExtResource("1_r3lwo")
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:3/0/custom_data_0 = 1
 1:3/0 = 0
 1:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_lkncs")
 1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -354,6 +354,7 @@ texture = ExtResource("1_r3lwo")
 3:8/0 = 0
 3:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:8/0/physics_layer_0/angular_velocity = 0.0
+3:8/0/custom_data_0 = 4
 6:8/0 = 0
 6:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:8/0/physics_layer_0/angular_velocity = 0.0
@@ -511,3 +512,4 @@ physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "td"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_q1wqf")
+script = ExtResource("1_mlylm")
