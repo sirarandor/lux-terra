@@ -16,7 +16,7 @@ public partial class Player : Node2D
 	private Label NameTag;
 
 	//Player specs: 
-	private int PlayerWalkingSpeed = 16;
+	private int PlayerWalkingSpeed = 2;
 
 	public Player() {
 	}
@@ -50,30 +50,27 @@ public partial class Player : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+		Godot.Vector2 ChangedPos = Position;
+
+		if (Input.IsActionPressed("ui_up")) {
+			ChangedPos.Y = ChangedPos.Y - PlayerWalkingSpeed; 
+		}
+		if (Input.IsActionPressed("ui_down")) {
+			ChangedPos.Y = ChangedPos.Y + PlayerWalkingSpeed;
+		}
+		if (Input.IsActionPressed("ui_right")) {
+			ChangedPos.X = ChangedPos.X + PlayerWalkingSpeed;
+		}
+		if (Input.IsActionPressed("ui_left")) {
+			ChangedPos.X = ChangedPos.X - PlayerWalkingSpeed;
+		}
+		
+		Position = ChangedPos;
 		PlayerCharacter.MoveAndSlide();
     }
 
     public override void _Input(InputEvent @event)
     {
-		Godot.Vector2 ChangedPos = Position;
 
-        base._Input(@event);
-
-		if (@event is InputEventKey eventKey) {
-			if (eventKey.Pressed && eventKey.Keycode == Key.Up) {
-				ChangedPos.Y = ChangedPos.Y - PlayerWalkingSpeed; 
-			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Down) {
-				ChangedPos.Y = ChangedPos.Y + PlayerWalkingSpeed;
-			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Right) {
-				ChangedPos.X = ChangedPos.X + PlayerWalkingSpeed;
-			}
-			if (eventKey.Pressed && eventKey.Keycode == Key.Left) {
-				ChangedPos.X = ChangedPos.X - PlayerWalkingSpeed;
-			}
-		}
-		
-		Position = ChangedPos;
     }
 }
