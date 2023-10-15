@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://celxpred6swyi"]
+
+[ext_resource type="Script" path="res://src/entiy/Player.cs" id="1_j8yaw"]
+[ext_resource type="Texture2D" uid="uid://blf8r3uuxsgua" path="res://content/sprites/character.png" id="2_4g1wu"]
+[ext_resource type="Theme" uid="uid://bb441filmbuhg" path="res://content/misc/base_theme.tres" id="3_y3ijg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3sdf"]
+size = Vector2(32, 32)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nhb4l"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("NameTag:text")
+properties/1/spawn = true
+properties/1/sync = false
+properties/1/watch = false
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_j8yaw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4g1wu")
+
+[node name="NameTag" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = -39.0
+offset_right = 27.0
+offset_bottom = -16.0
+grow_horizontal = 2
+theme = ExtResource("3_y3ijg")
+text = "player"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_l3sdf")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPS" type="Label" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme = ExtResource("3_y3ijg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nhb4l")

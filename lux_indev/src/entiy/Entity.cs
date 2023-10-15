@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+namespace luxterra 
+{
+
 public partial class Entity : Area2D
 {
 	// Called when the node enters the scene tree for the first time.
@@ -12,4 +15,7 @@ public partial class Entity : Area2D
 	public override void _Process(double delta)
 	{
 	}
+}
+
+
 }

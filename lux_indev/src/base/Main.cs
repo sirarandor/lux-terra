@@ -71,11 +71,13 @@ public partial class Main : Node
 	{
 		public static Dictionary<string,string> userInfo { get; set; } 
 		public static string USERNAME = "default";
+		public static int USERID = 0;
 		public static string ADDRESS = "localhost";
 		public static int 	 PORT    = 48256; 
 		public static string multiType = "default";
 
 		public static int CHUNKSIZE = 16;
+		public static int RENDERDISTANCE = 4;
 
 		public static Dictionary<string,Vector2I> enviromentReadableTiles = new Dictionary<string, Vector2I>{
 			{"stone", Vector2I(1,3)},
@@ -89,9 +91,16 @@ public partial class Main : Node
 			{3, Vector2I(1,4)},
 			{4, Vector2I(3,8)}
 			};
+		
+		public static Dictionary<string, int> enviromentReadableChunkTiles = new Dictionary<string, int> {
+			{"stone", 1},
+			{"dirt",  2},
+			{"metal", 3},
+			{"grass", 4}
+		};
 
 		//This should not work at all. Remove this later. Seriously. Bad.
-        private static Vector2I Vector2I(int v1, int v2)
+        public static Vector2I Vector2I(int v1, int v2)
         {
             Vector2I p = new Vector2I();
 			p.X = v1; 

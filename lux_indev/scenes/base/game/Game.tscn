@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://wyb757iwlqbk"]
+[gd_scene load_steps=6 format=3 uid="uid://wyb757iwlqbk"]
 
 [ext_resource type="Script" path="res://src/base/game/Game.cs" id="1_x825u"]
+[ext_resource type="Shader" path="res://content/shaders/enviroment.gdshader" id="2_7ambf"]
 [ext_resource type="TileSet" uid="uid://ds1t3ch82tc2p" path="res://content/tilesets/enviroment.tres" id="2_s1ncw"]
 [ext_resource type="Script" path="res://src/base/game/World.cs" id="3_5vo8j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eskch"]
+shader = ExtResource("2_7ambf")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_x825u")
 
 [node name="World" type="TileMap" parent="."]
+material = SubResource("ShaderMaterial_eskch")
 tile_set = ExtResource("2_s1ncw")
 format = 2
 layer_0/name = "bg"
@@ -21,5 +26,3 @@ layer_1/tile_data = PackedInt32Array()
 script = ExtResource("3_5vo8j")
 
 [node name="Entities" type="Node2D" parent="World"]
-
-[node name="Camera2D" type="Camera2D" parent="."]

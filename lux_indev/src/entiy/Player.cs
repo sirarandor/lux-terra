@@ -1,8 +1,9 @@
 using Godot;
+using luxterra;
 using System;
 using System.Runtime.Serialization;
 
-public partial class Player : Node2D
+public partial class Player : CharacterBody2D
 {
 
 	[Export]
@@ -12,11 +13,11 @@ public partial class Player : Node2D
 	public string playerName {get; set;}
 
 	//Player Nodes: 
-	private CharacterBody2D PlayerCharacter;
+	//public CharacterBody2D PlayerCharacter;
 	private Label NameTag;
 
 	//Player specs: 
-	private int PlayerWalkingSpeed = 2;
+	private int PlayerWalkingSpeed = 4;
 
 	public Player() {
 	}
@@ -29,8 +30,8 @@ public partial class Player : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		PlayerCharacter = GetNode<CharacterBody2D>("PlayerCharacter");
-		NameTag = GetNode<Label>("PlayerCharacter/NameTag");
+		//PlayerCharacter = GetNode<CharacterBody2D>("PlayerCharacter");
+		NameTag = GetNode<Label>("NameTag");
 		NameTag.Text = playerName;
 
 		Name = playerId.ToString();
@@ -45,32 +46,25 @@ public partial class Player : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		Label L_FPS = GetNode<Label>("GUI/Control/FPS");
+		Camera2D Cam = GetNode<Camera2D>("Camera2D"); 
+		L_FPS.Text = Engine.GetFramesPerSecond().ToString(); 
+		//Position = PlayerCharacter.Position; 
+
+		if (Input.IsActionJustPressed("scroll_up") && Cam.Zoom.X < 4) {
+			Cam.Zoom = new Vector2(Cam.Zoom.X + 0.1f, Cam.Zoom.Y + 0.1f); 
+		}
+		if (Input.IsActionJustPressed("scroll_down") && Cam.Zoom.X > 0) {
+			Cam.Zoom = new Vector2(Cam.Zoom.X - 0.1f, Cam.Zoom.Y - 0.1f); 
+		}
 	}
 
     public override void _PhysicsProcess(double delta)
     {
-		Godot.Vector2 ChangedPos = Position;
 
-		if (Input.IsActionPressed("ui_up")) {
-			ChangedPos.Y = ChangedPos.Y - PlayerWalkingSpeed; 
-		}
-		if (Input.IsActionPressed("ui_down")) {
-			ChangedPos.Y = ChangedPos.Y + PlayerWalkingSpeed;
-		}
-		if (Input.IsActionPressed("ui_right")) {
-			ChangedPos.X = ChangedPos.X + PlayerWalkingSpeed;
-		}
-		if (Input.IsActionPressed("ui_left")) {
-			ChangedPos.X = ChangedPos.X - PlayerWalkingSpeed;
-		}
+		Vector2 inputDir = Input.GetVector("left", "right", "up", "down");
+		Position = (inputDir * PlayerWalkingSpeed) + Position;
+		MoveAndSlide();
 		
-		Position = ChangedPos;
-		PlayerCharacter.MoveAndSlide();
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-
     }
 }
