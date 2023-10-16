@@ -77,12 +77,11 @@ public partial class Game : Node2D
 
 							if (Multiplayer.IsServer()) { 
 								gameWorld.RequestChunk(i,j, false);
+								pExploredChunks.Add((i, j), 1);
 							} else {
-								RpcId(1, "ServerSendChunk",i,j); 
+								RpcId(1, "ServerSendChunk",i,j);		
+								pExploredChunks.Add((i, j), 1);
 							}
-
-							pExploredChunks.Add((i, j), 1);
-							
 					}
 				}
 			}
@@ -133,9 +132,9 @@ public partial class Game : Node2D
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer)]
-	private void ServerSendChunk(int x, int y) {
+	private void ServerSendChunk(int x, int y) { 
 		Godot.Collections.Array<Vector4I> c = gameWorld.RequestChunk(x, y, true);
-		RpcId(Multiplayer.GetRemoteSenderId(), "ClientRecieveChunk", c);
+		RpcId(Multiplayer.GetRemoteSenderId(), "ClientRecieveChunk", c, x, y);
 	} 
 
 
@@ -156,7 +155,7 @@ public partial class Game : Node2D
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.Authority)]
-	private void ClientRecieveChunk(Godot.Collections.Array<Vector4I> c) {
-		gameWorld.DrawChunk(c); 
+	private void ClientRecieveChunk(Godot.Collections.Array<Vector4I> c, int x, int y) {
+		gameWorld.DrawChunk(c);
 	}
 }

@@ -76,8 +76,8 @@ public partial class Main : Node
 		public static int 	 PORT    = 48256; 
 		public static string multiType = "default";
 
-		public static int CHUNKSIZE = 16;
-		public static int RENDERDISTANCE = 4;
+		public static int CHUNKSIZE = 8;
+		public static int RENDERDISTANCE = 8;
 
 		public static Dictionary<string,Vector2I> enviromentReadableTiles = new Dictionary<string, Vector2I>{
 			{"stone", Vector2I(1,3)},
