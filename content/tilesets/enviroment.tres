@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ds1t3ch82tc2p"]
 
-[ext_resource type="Texture2D" uid="uid://c782hgbuyh50o" path="res://content/sprites/PixelsStuffsRecolorized.png" id="1_h2dkb"]
+[ext_resource type="Texture2D" uid="uid://c1yy5uhctepdk" path="res://content/sprites/PixelsStuffs.png" id="1_wmcr3"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lkncs"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -9,7 +9,7 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1wqf"]
-texture = ExtResource("1_h2dkb")
+texture = ExtResource("1_wmcr3")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
