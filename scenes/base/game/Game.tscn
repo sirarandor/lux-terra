@@ -26,3 +26,6 @@ layer_1/tile_data = PackedInt32Array()
 script = ExtResource("3_5vo8j")
 
 [node name="Entities" type="Node2D" parent="World"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="World"]
+spawn_path = NodePath("../Entities")
